@@ -1,0 +1,10 @@
+# Ignore secrets
+node_modules
+*.env
+*.conf
+*.rdb
+*.prettierrc
+.cache
+.parcel-cache
+
+

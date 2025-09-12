@@ -1,5 +1,3 @@
-const config = require('../config');
-
 class AppError extends Error {
   constructor(message, code, isOperational) {
     super(message);

@@ -63,7 +63,7 @@ mongoose
     console.log('DB Connection was unsucessful !!!');
   });
 
-server.listen(config.appPort || 3000, '127.0.0.1', () => {
+server.listen(config.appPort || 3000, '0.0.0.0', () => {
   console.log(`app is listening on port ${config.appPort}`);
 });
 
