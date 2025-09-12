@@ -31,8 +31,8 @@ MONGO_DATABASE_LOCAL=mongodb://mongo:27017/natours
 MONGO_USE_LOCAL=true
 REDIS_SERVER_URL=redis://redis:6379
 REDIS_DELETE_TIME=600000
-JWT_SECRET=your-jwt-secret
-JWT_EXPIRES=1d
+JWT_SECRET=*******
+JWT_EXPIRES=******
 
 Save and keep this file out of version control (add `config.env` to `.gitignore`).
 
