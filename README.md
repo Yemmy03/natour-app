@@ -41,7 +41,7 @@ Save and keep this file out of version control (add `config.env` to `.gitignore`
 Find the server starter (where the app actually listens). Likely `index.js`. Confirm it uses `0.0.0.0`:
 
 
-# search for the listen call and bind to 0.0.0.0 (runs in project root)
+Search for the listen call and bind to 0.0.0.0 (runs in project root)
 ```
 server.listen(config.appPort || 3000, '0.0.0.0', () => {
   console.log(`app is listening on port ${config.appPort || 3000}`);
