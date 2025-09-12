@@ -4,7 +4,7 @@
 
 This README guides you, step by step, from project files to a running Natours app in Docker (Node.js + MongoDB + Redis). Follow the steps in order. If something fails, check the Troubleshooting section at the end.
 
-----------------------------------
+-----------------------------------
 ## Prerequisites
 
 1. Docker installed
