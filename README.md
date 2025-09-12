@@ -8,17 +8,17 @@ This README guides you, step by step, from project files to a running Natours ap
 ## Prerequisites
 
 1. Docker installed
-2. Docker Compose available (modern Docker includes it as docker compose)
+2. Understanding yaml format of Docker Compose and Dockerfile
 3. Project files in one folder containing at least: `Dockerfile`, `docker-compose.yml`, `config.env`, app source files (`index.js`, `app.js`, etc.)
 
 ----------------------------------
 ## Steps
 
 ### Step 1 —> Confirm you are in the project root
-
+```
 cd /path/to/Natour
 ls -la
-
+```
 You should see `Dockerfile`, `docker-compose.yml`, `config.env` (or `example.env.txt`), and the server files.
 
 ### Step 2 —> Prepare environment file (config.env)
