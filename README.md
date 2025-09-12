@@ -24,7 +24,7 @@ You should see `Dockerfile`, `docker-compose.yml`, `config.env` (or `example.env
 ### Step 2 —> Prepare environment file (config.env)
 
 Create or edit `config.env` in the project root. Use plain KEY=VALUE lines:
-
+```
 NODE_ENV=development
 PORT=3000
 MONGO_DATABASE_LOCAL=mongodb://mongo:27017/natours
@@ -33,7 +33,7 @@ REDIS_SERVER_URL=redis://redis:6379
 REDIS_DELETE_TIME=600000
 JWT_SECRET=*******
 JWT_EXPIRES=******
-
+```
 Save and keep this file out of version control (add `config.env` to `.gitignore`).
 
 ### Step 3 —> Ensure the app binds to all interfaces
@@ -42,17 +42,17 @@ Find the server starter (where the app actually listens). Likely `index.js`. Con
 
 
 # search for the listen call and bind to 0.0.0.0 (runs in project root)
-
+```
 server.listen(config.appPort || 3000, '0.0.0.0', () => {
   console.log(`app is listening on port ${config.appPort || 3000}`);
 });
-
+```
 Binding to `0.0.0.0` is necessary so Docker can forward host traffic into the container.
 
 ### Step 4 —> Dockerfile (multi-stage build)
-
-Dockerfile
-# builder
+```
+## Dockerfile
+## Builder
 FROM node:18-alpine AS builder
 WORKDIR /usr/src/app
 COPY package*.json ./
@@ -60,7 +60,7 @@ RUN apk add --no-cache python3 make g++
 RUN npm install
 COPY . .
 
-# runtime
+## Runtime
 FROM node:18-alpine
 WORKDIR /usr/src/app
 COPY package*.json ./
@@ -68,9 +68,9 @@ RUN npm install --omit=dev
 COPY --from=builder /usr/src/app/ ./
 EXPOSE 3000
 ENTRYPOINT ["node", "index.js"]
-
+```
 ### Step 5 —> docker-compose.yml (service orchestration)
-
+```
 # Yaml
 services:
   app:
@@ -106,15 +106,13 @@ services:
 volumes:
   mongo_data:
   redis_data:
-
+```
 ### Step 6 —> Builds and run (compose)
 
 Stops any old or unused container and start fresh:
-
-
+```
 a) docker compose down -v
 docker compose up -d --build
-
 
 b) Verify containers: docker ps
 
@@ -123,14 +121,13 @@ c) Check logs: docker compose logs -f app
 d) Check env vars inside the running app container: 
 docker exec -it natours-app sh -c 'printenv | grep -E "NODE_ENV|PORT|MONGO|REDIS"'
 
-
 e) Check listening ports inside container:
 
 docker exec -it natours-app sh
 # inside container
 netstat -tuln
 You should see the app listening on `0.0.0.0:3000`.
-
+```
 ### Step 7 —> Access the app
 
 Open in browser or use curl on the host:
