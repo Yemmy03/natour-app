@@ -15,6 +15,8 @@ COPY . .
 # --------> Stage 2: Runtime <--------
 FROM node:18-alpine
 
+EXPOSE 3000
+
 WORKDIR /usr/src/app
 
 # Copy package files
@@ -27,6 +29,5 @@ RUN npm install --omit=dev
 COPY --from=builder /usr/src/app/ ./
 
 
-EXPOSE 3000
 ENTRYPOINT ["node", "index.js"]
 
